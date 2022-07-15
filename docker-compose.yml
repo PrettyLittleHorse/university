@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  university:
+    image: app-springboot-postgresql
+    build:
+      context: .
+    container_name: university
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=university
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: db
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=university
+    volumes:
+      - ./sql/universityTable.sql:/docker-entrypoint-initdb.d/universityTable.sql
+
+## sudo lsof -i :5432 to check ports
