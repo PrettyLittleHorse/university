@@ -31,7 +31,9 @@ public class CourseService {
     }
 
     public void createCourse(Course course) {
-        Optional<Course> courseOptional = courseRepository.findCourseByCourseNumber(course.getCourseNumber());
+        Optional<Course> courseOptional = courseRepository.findCourseByFacultyNameAndSpecialityNameAndCourseNumber(
+                course.getFacultyName(), course.getSpecialityName(), course.getCourseNumber()
+        );
 
         if (courseOptional.isPresent()) {
             throw new IllegalArgumentException(COURSE_WITH_GIVEN_NAME_ALREADY_EXISTS);

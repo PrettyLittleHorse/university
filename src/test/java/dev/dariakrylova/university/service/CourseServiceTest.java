@@ -25,10 +25,14 @@ public class CourseServiceTest {
     @Test
     void createCourseWhenCourseAlreadyExists() {
         Mockito
-                .when(courseRepository.findCourseByCourseNumber(5))
+                .when(courseRepository.findCourseByFacultyNameAndSpecialityNameAndCourseNumber("123456", "123", 5))
                 .thenReturn(Optional.of(new Course()));
 
-        assertThrows(IllegalArgumentException.class, () -> courseService.createCourse(new Course(1L, 5, "123456", "123", new HashSet<>(), new HashSet<>())));
+        assertThrows(
+                IllegalArgumentException.class, () ->
+                        courseService.createCourse(
+                                new Course(1L, 5, "123456", "123", new HashSet<>(), new HashSet<>()))
+        );
     }
 
     @Test
@@ -37,43 +41,49 @@ public class CourseServiceTest {
                 .when(courseRepository.findCourseByCourseNumber(5))
                 .thenReturn(Optional.empty());
 
-        assertThrows(IllegalArgumentException.class, () -> courseService.createCourse(new Course(1L, 5, "12345", "123", new HashSet<>(), new HashSet<>())));
+        assertThrows(
+                IllegalArgumentException.class, () ->
+                        courseService.createCourse(
+                                new Course(1L, 5, "12345", "123", new HashSet<>(), new HashSet<>())
+                        ));
     }
 
     @Test
     void createCourseWhenSpecialityNameTooShort() {
-        Mockito
-                .when(courseRepository.findCourseByCourseNumber(5))
-                .thenReturn(Optional.empty());
 
-        assertThrows(IllegalArgumentException.class, () -> courseService.createCourse(new Course(1L, 5, "123456", "12", new HashSet<>(), new HashSet<>())));
+        assertThrows(
+                IllegalArgumentException.class, () ->
+                        courseService.createCourse(
+                                new Course(1L, 5, "123456", "12", new HashSet<>(), new HashSet<>()))
+        );
     }
 
     @Test
     void createCourseWhenCourseNumberAndMoreThan5() {
-        Mockito
-                .when(courseRepository.findCourseByCourseNumber(5))
-                .thenReturn(Optional.empty());
 
-        assertThrows(IllegalArgumentException.class, () -> courseService.createCourse(new Course(1L, 6, "123456", "123", new HashSet<>(), new HashSet<>())));
+        assertThrows(
+                IllegalArgumentException.class, () ->
+                        courseService.createCourse(
+                                new Course(1L, 6, "123456", "123", new HashSet<>(), new HashSet<>()))
+        );
     }
 
     @Test
     void createCourseWhenCourseNumberLessThan1() {
-        Mockito
-                .when(courseRepository.findCourseByCourseNumber(5))
-                .thenReturn(Optional.empty());
 
-        assertThrows(IllegalArgumentException.class, () -> courseService.createCourse(new Course(1L, 0, "123456", "123", new HashSet<>(), new HashSet<>())));
+        assertThrows(
+                IllegalArgumentException.class, () ->
+                        courseService.createCourse(
+                                new Course(1L, 0, "123456", "123", new HashSet<>(), new HashSet<>()))
+        );
     }
 
     @Test
     void createCourse() {
-        Mockito
-                .when(courseRepository.findCourseByCourseNumber(5))
-                .thenReturn(Optional.empty());
 
-        assertDoesNotThrow(() -> courseService.createCourse(new Course(1L, 5, "123456", "123", new HashSet<>(), new HashSet<>())));
+        assertDoesNotThrow(() -> courseService.createCourse(
+                new Course(1L, 5, "123456", "123", new HashSet<>(), new HashSet<>()))
+        );
     }
 
     @Test
@@ -81,6 +91,7 @@ public class CourseServiceTest {
         Mockito
                 .when(courseRepository.findAll())
                 .thenReturn(new ArrayList<>());
+
         assertThrows(NoSuchElementException.class, () -> courseService.getAllCourseList());
     }
 
@@ -96,9 +107,6 @@ public class CourseServiceTest {
 
     @Test
     void getCourseByIdWhenNotFound() {
-        Mockito
-                .when(courseRepository.findById(1L))
-                .thenReturn(Optional.empty());
 
         assertThrows(NoSuchElementException.class, () -> courseService.getCourseById(1L));
     }
@@ -114,45 +122,46 @@ public class CourseServiceTest {
 
     @Test
     void updateCourseWhenFacultyNameTooShort() {
-        Mockito
-                .when(courseRepository.findById(1L))
-                .thenReturn(Optional.empty());
 
-        assertThrows(IllegalArgumentException.class, () -> courseService.updateCourse(new Course(1L, 5, "12345", "123", new HashSet<>(), new HashSet<>())));
+        assertThrows(
+                IllegalArgumentException.class, () ->
+                        courseService.updateCourse(
+                                new Course(1L, 5, "12345", "123", new HashSet<>(), new HashSet<>()))
+        );
     }
 
     @Test
     void updateCourseWhenSpecialityNameTooShort() {
-        Mockito
-                .when(courseRepository.findById(1L))
-                .thenReturn(Optional.empty());
 
-        assertThrows(IllegalArgumentException.class, () -> courseService.updateCourse(new Course(1L, 5, "123456", "12", new HashSet<>(), new HashSet<>())));
+        assertThrows(
+                IllegalArgumentException.class, () ->
+                        courseService.updateCourse(
+                                new Course(1L, 5, "123456", "12", new HashSet<>(), new HashSet<>()))
+        );
     }
 
     @Test
     void updateCourseWhenCourseNumberAndMoreThan5() {
-        Mockito
-                .when(courseRepository.findById(1L))
-                .thenReturn(Optional.empty());
 
-        assertThrows(IllegalArgumentException.class, () -> courseService.updateCourse(new Course(1L, 6, "123456", "123", new HashSet<>(), new HashSet<>())));
+        assertThrows(
+                IllegalArgumentException.class, () ->
+                        courseService.updateCourse(
+                                new Course(1L, 6, "123456", "123", new HashSet<>(), new HashSet<>()))
+        );
     }
 
     @Test
     void updateCourseWhenCourseNumberLessThan1() {
-        Mockito
-                .when(courseRepository.findById(1L))
-                .thenReturn(Optional.empty());
 
-        assertThrows(IllegalArgumentException.class, () -> courseService.updateCourse(new Course(1L, 0, "123456", "123", new HashSet<>(), new HashSet<>())));
+        assertThrows(
+                IllegalArgumentException.class, () ->
+                        courseService.updateCourse(
+                                new Course(1L, 0, "123456", "123", new HashSet<>(), new HashSet<>()))
+        );
     }
 
     @Test
     void deleteCourseByIdWhenNotFound() {
-        Mockito
-                .when(courseRepository.findById(1L))
-                .thenReturn(Optional.empty());
 
         assertThrows(NoSuchElementException.class, () -> courseService.deleteCourseById(1L));
     }

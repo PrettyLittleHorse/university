@@ -34,4 +34,24 @@ public class CourseRepositoryTest {
         Course actual = courseRepository.findCourseByCourseNumber(5).get();
         assertEquals(courseFiveJavaProgramming, actual);
     }
+
+    @Test
+    void findCourseByFacultyNameAndSpecialityNameAndCourseNumber() {
+        Course courseFiveJavaProgramming =
+                new Course(5, "Computer science", "Java programming", new HashSet<>(), new HashSet<>());
+
+        Course courseTwoJavaProgramming =
+                new Course(2, "Computer science1", "Java programming2", new HashSet<>(), new HashSet<>());
+
+        Course courseTwoMathFundamental =
+                new Course(2, "Computer science", "Math fundamental", new HashSet<>(), new HashSet<>());
+
+        courseRepository.saveAllAndFlush(List.of(courseFiveJavaProgramming, courseTwoJavaProgramming, courseTwoMathFundamental));
+
+        assertEquals(
+                courseFiveJavaProgramming,
+                courseRepository.findCourseByFacultyNameAndSpecialityNameAndCourseNumber(
+                        "Computer science", "Java programming", 5).get()
+        );
+    }
 }
