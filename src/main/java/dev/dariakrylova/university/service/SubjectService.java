@@ -65,7 +65,7 @@ public class SubjectService {
             throw new IllegalArgumentException(SUBJECT_NAME_TOO_SHORT);
         }
 
-        if (WEEK_DAYS.contains(subject.getWeekDay().toUpperCase())){
+        if (WEEK_DAYS.contains(subject.getWeekDay().toUpperCase())) {
             subjectRepository.save(subject);
         } else {
             throw new IllegalArgumentException("Week day is not walid");

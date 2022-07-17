@@ -84,7 +84,7 @@ public class CourseService {
         }
     }
 
-    private void checkCourseNumberAndFacultyAndSpecialityName(Course course){
+    private void checkCourseNumberAndFacultyAndSpecialityName(Course course) {
         if (course.getFacultyName().length() < FACULTY_NAME_MIN_LENGTH) {
             throw new IllegalArgumentException(FACULTY_NAME_TOO_SHORT);
         }

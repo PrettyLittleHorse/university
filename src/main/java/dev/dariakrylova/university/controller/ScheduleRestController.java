@@ -21,20 +21,20 @@ public class ScheduleRestController {
     private final StudentService studentService;
 
     @Autowired
-    public ScheduleRestController(ScheduleService scheduleService, StudentService studentService){
+    public ScheduleRestController(ScheduleService scheduleService, StudentService studentService) {
 
         this.scheduleService = scheduleService;
         this.studentService = studentService;
     }
 
     @GetMapping("/id{studentId}/date{date}")
-    public ResponseEntity<List<Schedule>> getScheduleJson(@PathVariable Long studentId,@PathVariable String date) {
+    public ResponseEntity<List<Schedule>> getScheduleJson(@PathVariable Long studentId, @PathVariable String date) {
 
         return ResponseEntity.ok(scheduleService.getSchedule(studentId, LocalDate.parse(date)));
     }
 
     @GetMapping("/{studentName}/{date}")
-    public ResponseEntity<List<Schedule>> getScheduleJson(@PathVariable String studentName,@PathVariable String date) {
+    public ResponseEntity<List<Schedule>> getScheduleJson(@PathVariable String studentName, @PathVariable String date) {
 
         return ResponseEntity.ok(
                 scheduleService.getSchedule(

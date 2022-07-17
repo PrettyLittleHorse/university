@@ -1,20 +1,16 @@
 package dev.dariakrylova.university.repository;
 
 import dev.dariakrylova.university.entity.Course;
-import dev.dariakrylova.university.entity.Student;
 import dev.dariakrylova.university.entity.Subject;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import javax.persistence.PreRemove;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 

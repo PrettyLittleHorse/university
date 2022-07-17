@@ -22,11 +22,11 @@ public class Course {
     @Column(name = "speciality_name", nullable = false)
     private String specialityName;
 
-    @OneToMany(mappedBy = "course", fetch= FetchType.LAZY)
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     @JsonManagedReference
     private Set<Student> students;
 
-    @OneToMany(mappedBy = "course", fetch= FetchType.LAZY)
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     @JsonManagedReference
     private Set<Subject> subjects;
 

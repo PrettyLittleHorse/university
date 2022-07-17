@@ -10,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -38,9 +37,9 @@ public class StudentRepositoryTest {
         Student lana = new Student("Lana", 3, course3);
         Student petra = new Student("Petra", 4, course4);
         Student clark = new Student("Clark", 5, course5);
-                  //Using constructor of Student without id cause id is generated value
+        //Using constructor of Student without id cause id is generated value
 
-        courseRepository.saveAllAndFlush(List.of(course1,course3,course4,course5));
+        courseRepository.saveAllAndFlush(List.of(course1, course3, course4, course5));
         studentRepository.saveAllAndFlush(List.of(petra, lana, clark, sindy));
 
 

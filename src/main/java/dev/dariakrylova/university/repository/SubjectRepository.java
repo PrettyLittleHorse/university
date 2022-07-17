@@ -1,7 +1,5 @@
 package dev.dariakrylova.university.repository;
 
-import dev.dariakrylova.university.entity.Course;
-import dev.dariakrylova.university.entity.Student;
 import dev.dariakrylova.university.entity.Subject;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
