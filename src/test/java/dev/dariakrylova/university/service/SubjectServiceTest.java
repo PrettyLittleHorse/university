@@ -27,7 +27,6 @@ public class SubjectServiceTest {
     @Autowired
     private SubjectService subjectService;
 
-
     @Test
     void getAllAvailableSubjectsListByDateWhenListEmpty() {
 
@@ -86,27 +85,18 @@ public class SubjectServiceTest {
 
     @Test
     void createSubjectWhenNameLessThen2() {
-        Mockito
-                .when(subjectRepository.findSubjectBySubjectName(""))
-                .thenReturn(Optional.empty());
 
         assertThrows(IllegalArgumentException.class, () -> subjectService.createSubject(new Subject(1L, "", LocalDate.now(), LocalDate.now(), "Friday", new Course())));
     }
 
     @Test
     void createSubjectWhenWeekDayIsNotValid() {
-        Mockito
-                .when(subjectRepository.findSubjectBySubjectName("123"))
-                .thenReturn(Optional.empty());
 
         assertThrows(IllegalArgumentException.class, () -> subjectService.createSubject(new Subject(1L, "123", LocalDate.now(), LocalDate.now(), "Friday11", new Course())));
     }
 
     @Test
     void createSubjectWhenIdNotFoundButNameBiggerThen2() {
-        Mockito
-                .when(subjectRepository.findSubjectBySubjectName("Tw"))
-                .thenReturn(Optional.empty());
 
         assertDoesNotThrow(() -> subjectService.createSubject(new Subject(1L, "Tw", LocalDate.now(), LocalDate.now(), "Friday", new Course())));
     }
@@ -134,9 +124,6 @@ public class SubjectServiceTest {
 
     @Test
     void getSubjectByIdWhenSubjectNotFound() {
-        Mockito
-                .when(subjectRepository.findById(1L))
-                .thenReturn(Optional.empty());
 
         assertThrows(NoSuchElementException.class, () -> subjectService.getSubjectById(1L));
     }
@@ -152,9 +139,6 @@ public class SubjectServiceTest {
 
     @Test
     void updateSubjectWhenSubjectNotFound() {
-        Mockito
-                .when(subjectRepository.findById(1L))
-                .thenReturn(Optional.empty());
 
         assertThrows(NoSuchElementException.class, () -> subjectService.updateSubject(new Subject()));
     }
@@ -179,9 +163,6 @@ public class SubjectServiceTest {
 
     @Test
     void deleteSubjectByIdWhenSubjectNotFound() {
-        Mockito
-                .when(subjectRepository.findById(1L))
-                .thenReturn(Optional.empty());
 
         assertThrows(NoSuchElementException.class, () -> subjectService.deleteSubjectById(1L));
     }

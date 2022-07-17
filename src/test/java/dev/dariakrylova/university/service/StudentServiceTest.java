@@ -111,9 +111,6 @@ public class StudentServiceTest {
 
     @Test
     void updateStudentWhenStudentNotFound() {
-        Mockito
-                .when(studentRepository.findById(1L))
-                .thenReturn(Optional.empty());
 
         assertThrows(NoSuchElementException.class, () -> studentService.updateStudent(new Student(1L, "", 5, new Course())));
     }
@@ -138,9 +135,6 @@ public class StudentServiceTest {
 
     @Test
     void deleteStudentByIdWhenStudentNotFound() {
-        Mockito
-                .when(studentRepository.findById(1L))
-                .thenReturn(Optional.empty());
 
         assertThrows(NoSuchElementException.class, () -> studentService.deleteStudentById(1L));
     }
