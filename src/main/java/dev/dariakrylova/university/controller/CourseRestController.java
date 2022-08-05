@@ -41,7 +41,7 @@ public class CourseRestController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public ResponseEntity<Course> updateCourse(@RequestBody Course course) {
         courseService.updateCourse(course);
 

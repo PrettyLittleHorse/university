@@ -46,7 +46,7 @@ public class StudentRestController {
         return new ResponseEntity<>(studentService.getStudentById(student.getId()), HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
         studentService.updateStudent(student);
 

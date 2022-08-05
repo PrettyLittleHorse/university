@@ -115,5 +115,4 @@ public class SubjectService {
             throw new NoSuchElementException(SUBJECT_WITH_GIVEN_ID_NOT_FOUND1);
         }
     }
-
 }

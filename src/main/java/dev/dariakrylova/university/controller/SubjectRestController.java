@@ -39,7 +39,7 @@ public class SubjectRestController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public ResponseEntity<Subject> updateSubject(@RequestBody Subject subject) {
         subjectService.updateSubject(subject);
 
